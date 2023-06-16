@@ -9,12 +9,15 @@ import { Routes, Route} from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 import firebase from './firebase/config';
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import View from './Components/View/View';
+import Post from './store/postContext';
 
 
 function App() {
   const {setuser}= useContext(AuthContext);
   const auth = getAuth(firebase)
   const firestore = getFirestore(firebase)
+  
   useEffect(()=> {
     auth.onAuthStateChanged(async(user)=> {
       console.log(user,"Auth data")
@@ -36,12 +39,15 @@ function App() {
 
   return (
     <div>
+      <Post>
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/signup' element={<Signup />}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/create' element={<Create/>}/>
+        <Route path='/view' element={<View/>}/>
       </Routes>
+      </Post>
     </div>
   );
 }

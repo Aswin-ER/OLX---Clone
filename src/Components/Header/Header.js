@@ -42,9 +42,9 @@ function Header() {
         <div className="loginPage">
           {
             user ? (
-              <span>{user.username}</span> 
+              <span>{  user.username.toUpperCase()}</span> 
               ): (
-                <span onClick={()=> navigate('/login')}>Login</span>
+                <span onClick={()=>{ navigate('/login')}}>Login</span>
             )
           }
           <hr />
